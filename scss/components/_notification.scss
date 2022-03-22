@@ -6,6 +6,7 @@
 
   Optionally, the notifications directive can also tap into the browser's native notification support, if it exists.
 */
+@use 'sass:math';
 
 /// @Foundation.settings
 // Notification
@@ -76,7 +77,7 @@ $notification-icon-align: top !default;
   }
   @else if $x == middle {
     left: 50%;
-    margin-left: -($size / 2);
+    margin-left: math.div($size, 2) * -1;
   }
 
   @if $y == top {
