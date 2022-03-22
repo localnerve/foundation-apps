@@ -8,6 +8,7 @@
 // You can also pass an em, rem, or pixel value into this mixin to generate an em-based media query.
 // Create new named breakpoints using the $breakpoints map. Change which named breakpoints get their own classes by modifying the $breakpoint-classes map.
 // NOTE: If you change the $breakpoints map, know that all values must be ordered by width, smallest width first. So 0 is always your first value.
+@use 'sass:math';
 
 // 1. Variables
 // - - - - - - - - - - - - - - -
@@ -66,7 +67,7 @@ $breakpoint-classes: (small medium large) !default;
             $bpMax: null;
           }
           @else {
-            $bpMax: $next-bp - (1/16);
+            $bpMax: $next-bp - math.div(1, 16);
           }
         }
         $bp: map-get($breakpoints, $bp);
@@ -99,7 +100,7 @@ $breakpoint-classes: (small medium large) !default;
         }
       }
       @else if $dir == 'down' {
-        $max: $bp - (1/16);
+        $max: $bp - math.div(1, 16);
         $str: $str + ' and (max-width: #{$max})';
       }
       @else {
